@@ -2182,47 +2182,8 @@ describe('manipulation', function() {
       });
     });
 
-    describe('nanoid defaultFn', function() {
-      let ModelWithNanoId;
-      before(createModelWithNanoId);
 
-      it('should generate a new id when "defaultFn" is "nanoid"', function(done) {
-        const NANOID_REGEXP = /^[0-9a-z_\-]{7,14}$/i;
-        ModelWithNanoId.create(function(err, modelWithNanoId) {
-          if (err) return done(err);
-          modelWithNanoId.nanoid.should.match(NANOID_REGEXP);
-          done();
-        });
-      });
 
-      function createModelWithNanoId(cb) {
-        ModelWithNanoId = db.define('ModelWithNanoId', {
-          nanoid: {type: String, defaultFn: 'nanoid'},
-        });
-        db.automigrate('ModelWithNanoId', cb);
-      }
-    });
-
-    describe('shortid defaultFn', function() {
-      let ModelWithShortId;
-      before(createModelWithShortId);
-
-      it('should generate a new id when "defaultFn" is "shortid"', function(done) {
-        const SHORTID_REGEXP = /^[0-9a-z_\-]{7,14}$/i;
-        ModelWithShortId.create(function(err, modelWithShortId) {
-          if (err) return done(err);
-          modelWithShortId.shortid.should.match(SHORTID_REGEXP);
-          done();
-        });
-      });
-
-      function createModelWithShortId(cb) {
-        ModelWithShortId = db.define('ModelWithShortId', {
-          shortid: {type: String, defaultFn: 'shortid'},
-        });
-        db.automigrate('ModelWithShortId', cb);
-      }
-    });
 
     // it('should work when constructor called as function', function() {
     //     var p = Person({name: 'John Resig'});
